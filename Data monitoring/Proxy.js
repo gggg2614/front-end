@@ -22,7 +22,7 @@
 //单继承
 // var foo = {
 //     pname: 1,
-//     foo: function () {
+//     foo() {
 //         console.log('foo1');
 //     }
 // }
@@ -30,5 +30,20 @@
 // sonoffoo.foo()
 
 //多继承
-
-
+var bar = {
+    bar() {
+        console.log('bar');
+    }
+}
+var foo = {
+    foo() {
+        console.log('foo');
+    }
+}
+sonoffoo = new Proxy({}, {
+    get: (target, name) => {
+        return target[name] || foo[name] || bar[name]
+    }
+})
+sonoffoo.bar()
+sonoffoo.foo()
