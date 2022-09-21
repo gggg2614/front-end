@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+</script>
+<!-- 只执行最后一次 -->
+<body>
+    <input type="text">
+</body>
+<script>
+    $('input')[0].oninput = debounce(function () {
+        console.log(this.value);
+    }, 500)
+
+    function debounce(fn, delay) {
+        let t = null
+        return function () {
+            if (t !== null) {
+                clearTimeout(t)
+            }
+            t = setTimeout(() => {
+                console.log(this);
+                fn.call(this)
+            }, delay);
+        }
+    }
+</script>
+
+</html>
